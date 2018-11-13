@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+    <TextView
+        android:id="@+id/NOMBRE"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="1dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/DESCRIPCION"
+        android:layout_width="135dp"
+        android:layout_height="168dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NOMBRE" />
+
+    <TextView
+        android:id="@+id/fechas"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/fecha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/DESCRIPCION"
+        app:layout_constraintTop_toBottomOf="@+id/NOMBRE" />
+
+    <TextView
+        android:id="@+id/af"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/a"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/DESCRIPCION"
+        app:layout_constraintTop_toBottomOf="@+id/fechas" />
+
+    <TextView
+        android:id="@+id/FECHAI"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toStartOf="@+id/af"
+        app:layout_constraintTop_toBottomOf="@+id/fechas" />
+
+    <TextView
+        android:id="@+id/FECHAF"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/af"
+        app:layout_constraintTop_toBottomOf="@+id/fechas" />
+
+    <TextView
+        android:id="@+id/horas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/hora"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/DESCRIPCION"
+        app:layout_constraintTop_toBottomOf="@+id/af" />
+
+    <TextView
+        android:id="@+id/ah"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/a"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toEndOf="@+id/DESCRIPCION"
+        app:layout_constraintTop_toBottomOf="@+id/horas" />
+
+    <TextView
+        android:id="@+id/HORAI"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toStartOf="@+id/ah"
+        app:layout_constraintTop_toBottomOf="@+id/horas" />
+
+    <TextView
+        android:id="@+id/HORAF"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/ah"
+        app:layout_constraintTop_toBottomOf="@+id/horas" />
+
+    <TextView
+        android:id="@+id/COS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/costos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/DESCRIPCION"
+        app:layout_constraintTop_toBottomOf="@+id/ah" />
+
+    <TextView
+        android:id="@+id/COSTOS"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/DESCRIPCION"
+        app:layout_constraintTop_toBottomOf="@+id/COS" />
+</android.support.constraint.ConstraintLayout>

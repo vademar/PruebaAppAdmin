@@ -24,7 +24,7 @@ public class Menu extends AppCompatActivity {
         MYQR.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent user = new Intent(root,Myqr.class);
+                Intent user = new Intent(root,ListEvent.class);
                 root.startActivity(user);
             }
         });
