@@ -12,7 +12,7 @@
         android:layout_height="200dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,16 +21,14 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img"
-        app:layout_constraintVertical_bias="0.333">
+        app:layout_constraintTop_toBottomOf="@+id/img">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +40,7 @@
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/CI"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -56,20 +54,22 @@
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:id="@+id/editText3"
+                    android:id="@+id/PSS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:hint="Enter Your Password"
                     android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/LOGIN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:onClick="InicioSesion"
+                android:text="LOGIN" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

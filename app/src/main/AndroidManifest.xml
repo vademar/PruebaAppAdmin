@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.valdemar.admevent">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Menu" />
+        <activity android:name=".Users" />
+        <activity android:name=".Myqr" />
+        <activity android:name=".Prof" />
+        <activity android:name=".Event" />
+        <activity android:name=".Admins"></activity>
     </application>
 
 </manifest>
