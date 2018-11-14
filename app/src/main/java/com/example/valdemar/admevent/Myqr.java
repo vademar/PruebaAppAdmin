@@ -1,6 +1,7 @@
 package com.example.valdemar.admevent;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,12 +19,24 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class Myqr extends AppCompatActivity implements ZXingScannerView.ResultHandler{
 
     private ZXingScannerView escannerView;
-    private TextView LECTURA;
-    private String Dato;
+    private TextView LECTURA, EVENTO;
+    private String Dato, NOM;
+    private Bundle B;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myqr);
+        EVENTO=(TextView)findViewById(R.id.EVENTO);
+        Intent detalle = getIntent();
+        B = getIntent().getExtras();
+        RellenoDelIntenet();
+    }
+
+    private void RellenoDelIntenet() {
+        if(B != null){
+                //Toast.makeText(this, "son iguales", Toast.LENGTH_SHORT).show();
+                EVENTO.setText(B.getString("nom"));
+        }
     }
 
     public void EscanerQR(View view){

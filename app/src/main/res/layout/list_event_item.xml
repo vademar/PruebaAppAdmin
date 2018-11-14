@@ -23,6 +23,7 @@
         android:layout_width="135dp"
         android:layout_height="168dp"
         android:layout_marginTop="5dp"
+        android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -134,6 +135,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/DESCRIPCION"
         app:layout_constraintTop_toBottomOf="@+id/COS" />

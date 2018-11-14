@@ -23,7 +23,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class ListEvent extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ListView LIST;
-    private ArrayList<com.example.valdemar.admevent.Box.Event> LISTINFO;
+    private ArrayList<Event> LISTINFO;
     private EventAdapter ADAPTER;
     private Context root;
     @Override
@@ -38,8 +38,8 @@ public class ListEvent extends AppCompatActivity implements AdapterView.OnItemCl
     }
 
     private void Elrelleno() {
-        AsyncHttpClient profes = new AsyncHttpClient();
-        profes.get(Host.Rest_Eventi, new JsonHttpResponseHandler(){
+        AsyncHttpClient Events = new AsyncHttpClient();
+        Events.get(Host.Rest_Eventi, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
@@ -78,12 +78,6 @@ public class ListEvent extends AppCompatActivity implements AdapterView.OnItemCl
 
         Intent detalle = new Intent(root,Myqr.class);
         detalle.putExtra("nom",NOM);
-        detalle.putExtra("fei",FECI);
-        detalle.putExtra("fef",FECF);
-        detalle.putExtra("hoi",HORI);
-        detalle.putExtra("hof",HORF);
-        detalle.putExtra("des",DES);
-        detalle.putExtra("cos",COS);
         this.startActivity(detalle);
     }
 }
