@@ -39,7 +39,7 @@ public class EventAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
             LayoutInflater inflate =(LayoutInflater) this.CONTEXT.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflate.inflate(R.layout.list_event_item,null);
+            convertView = inflate.inflate(R.layout.evento_list_register,null);
         }
         TextView nombre = (TextView)convertView.findViewById(R.id.NOMBRE);
         TextView descri = (TextView)convertView.findViewById(R.id.DESCRIPCION);
