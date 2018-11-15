@@ -25,7 +25,9 @@
         <activity android:name=".Prof" />
         <activity android:name=".Event" />
         <activity android:name=".Admins" />
-        <activity android:name=".ListEvent"></activity>
+        <activity android:name=".ListEvent" />
+        <activity android:name=".EventView" />
+        <activity android:name=".EventEditions"></activity>
     </application>
 
 </manifest>

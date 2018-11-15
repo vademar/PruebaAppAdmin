@@ -11,11 +11,11 @@ import com.example.valdemar.admevent.R;
 
 import java.util.ArrayList;
 
-public class EventAdapter extends BaseAdapter{
+public class EventoAdaptador extends BaseAdapter{
     private Context CONTEXT;
-    private ArrayList<Event>LIST;
+    private ArrayList<Event> LIST;
 
-    public EventAdapter(Context CONTEXT, ArrayList<Event> LIST) {
+    public EventoAdaptador(Context CONTEXT, ArrayList<Event> LIST) {
         this.CONTEXT = CONTEXT;
         this.LIST = LIST;
     }
@@ -39,23 +39,14 @@ public class EventAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
             LayoutInflater inflate =(LayoutInflater) this.CONTEXT.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflate.inflate(R.layout.evento_list_register,null);
-            //convertView = inflate.inflate(R.layout.list_user_item,null);
+            convertView = inflate.inflate(R.layout.list_even_item,null);
         }
-        TextView nombre = (TextView)convertView.findViewById(R.id.NOMBRE);
-        TextView descri = (TextView)convertView.findViewById(R.id.DESCRIPCION);
-        TextView fechaI = (TextView)convertView.findViewById(R.id.FECHAI);
-        TextView fechaF = (TextView)convertView.findViewById(R.id.FECHAF);
-        TextView horaI = (TextView)convertView.findViewById(R.id.HORAI);
-        TextView horaF = (TextView)convertView.findViewById(R.id.HORAF);
-        TextView costo = (TextView)convertView.findViewById(R.id.COSTOS);
+        TextView nombre = (TextView)convertView.findViewById(R.id.Ev_Nomb);
+        TextView descri = (TextView)convertView.findViewById(R.id.Ev_Desc);
+        TextView costo = (TextView)convertView.findViewById(R.id.Ev_Invi);
 
         nombre.setText(this.LIST.get(position).getNOMB());
         descri.setText(this.LIST.get(position).getDESC());
-        fechaI.setText(this.LIST.get(position).getFECI());
-        fechaF.setText(this.LIST.get(position).getFECF());
-        horaI.setText(this.LIST.get(position).getHORI());
-        horaF.setText(this.LIST.get(position).getHORF());
         costo.setText(this.LIST.get(position).getCOST());
         return convertView;
     }
