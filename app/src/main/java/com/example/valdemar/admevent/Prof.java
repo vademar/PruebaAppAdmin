@@ -36,7 +36,7 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
     private Context root;
     private EditText VPROFES, VCOSTOS;
     private Button ADD, UPDATE, DELETE;
-    private String PRof, PRec;
+    private String PRof, PRec, PId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         root = this;
@@ -62,9 +62,10 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
                     JSONArray jsonArray = response.getJSONArray("Profesion");
                     for(int i=0; i<jsonArray.length(); i++){
                         JSONObject obj = jsonArray.getJSONObject(i);
+                        String idp = obj.optString("_id");
                         String nom = obj.optString("profesiones");
                         String pre = obj.optString("precio");
-                        Profe profee = new Profe(nom,pre);
+                        Profe profee = new Profe(idp,nom,pre);
                         LISTINFO.add(profee);
                     }
 
@@ -79,7 +80,7 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
 
     public void AddProfesion(View view){
         PRof= VPROFES.getText().toString();
-        PRec=VCOSTOS.getText().toString();
+        PRec= VCOSTOS.getText().toString();
 
         if (PRof.length()== 0) {
             Toast.makeText(this,"Empty Profession", Toast.LENGTH_SHORT).show();
@@ -99,8 +100,7 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
                             String msn = response.getString("msn");
                             Intent inte = new Intent(root,Prof.class);
                             root.startActivity(inte);
-                            Toast.makeText(root,"Successfully Registered.",Toast.LENGTH_SHORT).show();
-                            Toast.makeText(root, response.getString("Successfully Registered"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -108,9 +108,7 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                         try {
                             String msn = errorResponse.getString("msn");
-                            Toast.makeText(root,"Error when adding",Toast.LENGTH_SHORT).show();
-                            Intent inte = new Intent(root,Prof.class);
-                            root.startActivity(inte);
+                            Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -123,18 +121,90 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
     }
 
     public void DeleteProfesion(View view){
-        Toast.makeText(this,"Presionando borrar", Toast.LENGTH_SHORT).show();
+        PRof= VPROFES.getText().toString();
+        PRec= VCOSTOS.getText().toString();
+
+        if (PRof.length()== 0) {
+            Toast.makeText(this,"Empty Profession", Toast.LENGTH_SHORT).show();
+        }else if (PRec.length()== 0) {
+            Toast.makeText(this,"Empty Price", Toast.LENGTH_SHORT).show();
+        }
+        if(PRof.length()!=0 && PRec.length()!=0){
+            AsyncHttpClient DelProf = new AsyncHttpClient();
+            RequestParams param = new RequestParams();
+            DelProf.delete(Host.Rest_Profesiones+PRof, param, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    try {
+                        String msn = response.getString("msn");
+                        Intent inte = new Intent(root,Prof.class);
+                        root.startActivity(inte);
+                        Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                }
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    try {
+                        String msn = errorResponse.getString("msn");
+                        Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 
     public void UpdateProfesion(View view){
-        Toast.makeText(this,"precionando actualizar", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"precionando actualizar", Toast.LENGTH_SHORT).show();
+        PRof= VPROFES.getText().toString();
+        PRec= VCOSTOS.getText().toString();
+        if (PRof.length()== 0) {
+            Toast.makeText(this,"Empty Profession", Toast.LENGTH_SHORT).show();
+        }else if (PRec.length()== 0) {
+            Toast.makeText(this,"Empty Price", Toast.LENGTH_SHORT).show();
+        }
+        if(PRof.length()!=0 && PRec.length()!=0){
+            if(PRof.matches("[aA-zZ,ñÑ]*")){
+                AsyncHttpClient UpdateProf = new AsyncHttpClient();
+                RequestParams param = new RequestParams();
+                param.put("profesiones",PRof);
+                param.put("precio",PRec);
+                UpdateProf.put(Host.Rest_Profesiones+PId, param, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        try {
+                            String msn = response.getString("msn");
+                            Intent inte = new Intent(root,Prof.class);
+                            root.startActivity(inte);
+                            Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        try {
+                            String msn = errorResponse.getString("msn");
+                            Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }else{
+                Toast.makeText(root,"Only Letters in the Field are Permitted", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        PId = this.LISTINFO.get(position).getIDPRO();
         String NOM = this.LISTINFO.get(position).getPROFES();
         String PRE = this.LISTINFO.get(position).getPRECIO();
         VPROFES.setText(NOM);
         VCOSTOS.setText(PRE);
+        //Toast.makeText(this,PId+"\n"+NOM+PRE, Toast.LENGTH_LONG).show();
     }
 }
