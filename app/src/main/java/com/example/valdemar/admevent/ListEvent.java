@@ -46,14 +46,15 @@ public class ListEvent extends AppCompatActivity implements AdapterView.OnItemCl
                     JSONArray jsonArray = response.getJSONArray("event");
                     for(int i=0; i<jsonArray.length(); i++){
                         JSONObject obj = jsonArray.getJSONObject(i);
-                        String  nom = obj.optString("nombre");
+                        String IDe = obj.optString("_id");
+                        String nom = obj.optString("nombre");
                         String fechi = obj.optString("fechaIni");
                         String hori = obj.optString("horaIni");
                         String fechf = obj.optString("fechaFin");
                         String horf = obj.optString("horaFin");
                         String des = obj.optString("descripcion");
                         String cos = obj.optString("invitados");
-                        Event evento = new Event(nom,fechi,hori,fechf,horf,des,cos);
+                        Event evento = new Event(IDe,nom,fechi,hori,fechf,horf,des,cos);
                         LISTINFO.add(evento);
                     }
 

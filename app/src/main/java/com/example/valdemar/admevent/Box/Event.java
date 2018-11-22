@@ -1,6 +1,7 @@
 package com.example.valdemar.admevent.Box;
 
 public class Event {
+    public String EVID;
     public String NOMB;
     public String FECI;
     public String HORI;
@@ -9,7 +10,8 @@ public class Event {
     public String DESC;
     public String COST;
 
-    public Event(String NOMB, String FECI, String HORI, String FECF, String HORF, String DESC, String COST) {
+    public Event(String EVID,String NOMB, String FECI, String HORI, String FECF, String HORF, String DESC, String COST) {
+        this.EVID = EVID;
         this.NOMB = NOMB;
         this.FECI = FECI;
         this.HORI = HORI;
@@ -17,6 +19,14 @@ public class Event {
         this.HORF = HORF;
         this.DESC = DESC;
         this.COST = COST;
+    }
+
+    public String getEVID() {
+        return this.EVID;
+    }
+
+    public void setEVID(String EVID) {
+        this.EVID = EVID;
     }
 
     public String getNOMB() {

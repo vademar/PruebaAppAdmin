@@ -1,6 +1,7 @@
 package com.example.valdemar.admevent.Box;
 
 public class User {
+    public String USID;
     public String NOMB;
     public String APEL;
     public String PROF;
@@ -9,7 +10,8 @@ public class User {
     public String CEDU;
     public String PASS;
 
-    public User(String NOMB, String APEL, String PROF, String INST, String CARG, String CEDU, String PASS) {
+    public User(String USID,String NOMB, String APEL, String PROF, String INST, String CARG, String CEDU, String PASS) {
+        this.USID = USID;
         this.NOMB = NOMB;
         this.APEL = APEL;
         this.PROF = PROF;
@@ -17,6 +19,14 @@ public class User {
         this.CARG = CARG;
         this.CEDU = CEDU;
         this.PASS = PASS;
+    }
+
+    public String getUSID() {
+        return this.USID;
+    }
+
+    public void setUSID(String USID) {
+        this.USID = USID;
     }
 
     public String getNOMB() {

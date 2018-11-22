@@ -19,6 +19,7 @@ import com.example.valdemar.admevent.Box.costo;
 import com.example.valdemar.admevent.Hosting.Host;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +39,7 @@ public class EventEditions extends AppCompatActivity {
     private String[] ListProfes;
     private ArrayList<Integer> lasprofesiones = new ArrayList<>();
     private boolean[] CheckProfes;
+    private String EvID,NOMB,FECI,HORI,FECF,HORF,DESC,COST;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         root = this;
@@ -68,6 +70,7 @@ public class EventEditions extends AppCompatActivity {
         Intent detalle = getIntent();
         Bundle B = getIntent().getExtras();
         if (B != null){
+            EvID = B.getString("eid");
             nomb.setText(B.getString("nom"));
             fecI.setText(B.getString("fei"));
             horI.setText(B.getString("hoi"));
@@ -122,6 +125,7 @@ public class EventEditions extends AppCompatActivity {
         },year,mes,dia);
         Ponerfecha.show();
     }
+
     public void BTNFechaF(View View){
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
@@ -138,6 +142,7 @@ public class EventEditions extends AppCompatActivity {
         },year,mes,dia);
         Ponerfecha.show();
     }
+
     public void BTNHoraI(View view){
         final Calendar c = Calendar.getInstance();
 
@@ -152,6 +157,7 @@ public class EventEditions extends AppCompatActivity {
         },hora,min,false);
         ponerhora.show();
     }
+
     public void BTNHoraF(View view){
         final Calendar c = Calendar.getInstance();
 
@@ -166,6 +172,7 @@ public class EventEditions extends AppCompatActivity {
         },hora,min,false);
         ponerhora.show();
     }
+
     public void ProfesionesVER(View view){
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         mBuilder.setTitle("Elija Los Participantes");
@@ -217,5 +224,106 @@ public class EventEditions extends AppCompatActivity {
 
         AlertDialog mDialog = mBuilder.create();
         mDialog.show();
+    }
+
+    public void UpdateEvent(View view){
+        NOMB = nomb.getText().toString();
+        FECI = fecI.getText().toString();
+        HORI = horI.getText().toString();
+        FECF = fecF.getText().toString();
+        HORF = horF.getText().toString();
+        DESC = desc.getText().toString();
+        COST = cost.getText().toString();
+        if (NOMB.length()== 0) {
+            Toast.makeText(this,"Ingrese Nombre Para Evento", Toast.LENGTH_SHORT).show();
+        }
+        if (FECI== null) {
+            Toast.makeText(this,"La Fecha Inicio es Necesario", Toast.LENGTH_SHORT).show();
+        }
+        if (HORI== null) {
+            Toast.makeText(this,"La Hora Inicio es Necesario", Toast.LENGTH_SHORT).show();
+        }
+        if (FECF== null) {
+            Toast.makeText(this,"La Fecha Final es Necesario", Toast.LENGTH_SHORT).show();
+        }
+        if (HORF== null) {
+            Toast.makeText(this,"La Hora Final es Necesario", Toast.LENGTH_SHORT).show();
+        }
+        if (DESC.length()==0){
+            Toast.makeText(this,"Describa Su Evento", Toast.LENGTH_SHORT).show();
+        }
+
+        if(NOMB.length()!=0 && FECI!=null && HORI!= null && FECF!= null && HORF!= null && DESC.length()!=0){
+                AsyncHttpClient UpdateUser = new AsyncHttpClient();
+                RequestParams param = new RequestParams();
+                param.put("nombre",NOMB);
+                param.put("fechaIni",FECI);
+                param.put("horaIni",HORI);
+                param.put("fechaFin",FECF);
+                param.put("horaFin",HORF);
+                param.put("descripcion",DESC);
+                param.put("invitados",COST);
+                UpdateUser.put(Host.Rest_Eventi+EvID, param, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        try {
+                            String msn = response.getString("msn");
+                            Intent inte = new Intent(root,Menu.class);
+                            root.startActivity(inte);
+                            finish();
+                            Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        try {
+                            String msn = errorResponse.getString("msn");
+                            Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        }
+    }
+
+    public void DeleteEvent(View view){
+        NOMB = nomb.getText().toString();
+        FECI = fecI.getText().toString();
+        HORI = horI.getText().toString();
+        FECF = fecF.getText().toString();
+        HORF = horF.getText().toString();
+        DESC = desc.getText().toString();
+        COST = cost.getText().toString();
+        if (NOMB.length()== 0) {
+            Toast.makeText(this,"Ingrese Nombre Para Evento", Toast.LENGTH_SHORT).show();
+        }
+        if(NOMB.length()!=0 && FECI!=null && HORI!= null && FECF!= null && HORF!= null && DESC.length()!=0){
+            AsyncHttpClient UpdateUser = new AsyncHttpClient();
+            RequestParams param = new RequestParams();
+            UpdateUser.delete(Host.Rest_Eventi+NOMB, param, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    try {
+                        String msn = response.getString("msn");
+                        Intent inte = new Intent(root,Menu.class);
+                        root.startActivity(inte);
+                        finish();
+                        Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    try {
+                        String msn = errorResponse.getString("msn");
+                        Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 }
