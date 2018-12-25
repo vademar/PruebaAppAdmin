@@ -5,4 +5,7 @@ public class Host {
     static public String Rest_Registro = Host + "/registro/";
     static public String Rest_Profesiones = Host + "/profesiones/";
     static public String Rest_Eventi = Host + "/Events/";
+    static public String Rest_Login = Host + "/sesion/";
+    static public String Rest_Admin = Host + "/Adminis/";
+    static public String Rest_Regitrar = Host + "/registrarlos/";
 }

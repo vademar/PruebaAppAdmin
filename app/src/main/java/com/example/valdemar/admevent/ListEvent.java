@@ -78,7 +78,7 @@ public class ListEvent extends AppCompatActivity implements AdapterView.OnItemCl
         String COS = this.LISTINFO.get(position).getCOST();
 
         Intent detalle = new Intent(root,Myqr.class);
-        detalle.putExtra("nom",NOM);
+        detalle.putExtra("nom",NOM+"\n"+FECI+" a "+FECF+"\n"+HORI+" a "+HORF+"\n"+DES+"\n"+COS);
         this.startActivity(detalle);
     }
 }

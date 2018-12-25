@@ -136,6 +136,7 @@ public class Users extends AppCompatActivity implements AdapterView.OnItemClickL
                             String msn = response.getString("msn");
                             Intent inte = new Intent(root,Users.class);
                             root.startActivity(inte);
+                            finish();
                             Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -197,6 +198,7 @@ public class Users extends AppCompatActivity implements AdapterView.OnItemClickL
                             String msn = response.getString("msn");
                             Intent inte = new Intent(root,Users.class);
                             root.startActivity(inte);
+                            finish();
                             Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();

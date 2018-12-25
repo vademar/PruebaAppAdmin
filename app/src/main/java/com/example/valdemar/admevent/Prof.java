@@ -88,7 +88,7 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
             Toast.makeText(this,"Empty Price", Toast.LENGTH_SHORT).show();
         }
         if(PRof.length()!=0 && PRec.length()!=0){
-            if(PRof.matches("[aA-zZ,ñÑ]*")){
+            if(PRof.matches("[aA-zZñÑ áéíóú]*")){
                 AsyncHttpClient InputProf = new AsyncHttpClient();
                 RequestParams param = new RequestParams();
                 param.put("profesiones",PRof);
@@ -100,6 +100,7 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
                             String msn = response.getString("msn");
                             Intent inte = new Intent(root,Prof.class);
                             root.startActivity(inte);
+                            finish();
                             Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -139,6 +140,7 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
                         String msn = response.getString("msn");
                         Intent inte = new Intent(root,Prof.class);
                         root.startActivity(inte);
+                        finish();
                         Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                             e.printStackTrace();
@@ -157,7 +159,6 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
     }
 
     public void UpdateProfesion(View view){
-        //Toast.makeText(this,"precionando actualizar", Toast.LENGTH_SHORT).show();
         PRof= VPROFES.getText().toString();
         PRec= VCOSTOS.getText().toString();
         if (PRof.length()== 0) {
@@ -178,6 +179,7 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
                             String msn = response.getString("msn");
                             Intent inte = new Intent(root,Prof.class);
                             root.startActivity(inte);
+                            finish();
                             Toast.makeText(root,msn,Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -205,6 +207,5 @@ public class Prof extends AppCompatActivity implements AdapterView.OnItemClickLi
         String PRE = this.LISTINFO.get(position).getPRECIO();
         VPROFES.setText(NOM);
         VCOSTOS.setText(PRE);
-        //Toast.makeText(this,PId+"\n"+NOM+PRE, Toast.LENGTH_LONG).show();
     }
 }
