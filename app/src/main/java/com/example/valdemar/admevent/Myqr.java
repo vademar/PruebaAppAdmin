@@ -97,34 +97,34 @@ public class Myqr extends AppCompatActivity implements ZXingScannerView.ResultHa
             rows = (ArrayList<String[]>) ARRAYLIST.clone();
             Reg.setEnabled(false);
             Toast.makeText(this,i+" Usuario, Registrado",Toast.LENGTH_SHORT).show();
+            AsyncHttpClient InputReg = new AsyncHttpClient();
+            RequestParams param = new RequestParams();
+            param.put("eventos",ADevento);
+            param.put("usuarios",Dato);
+            InputReg.post(Host.Rest_Regitrar, param, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    try {
+                        String msn = response.getString("msn");
+                        Toast.makeText(getApplicationContext(),msn,Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    try {
+                        String msn = errorResponse.getString("msn");
+                        Toast.makeText(getApplicationContext(),msn,Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }else{
             Toast.makeText(this, "Aún no ha Hecho lectura de Datos", Toast.LENGTH_SHORT).show();
             Reg.setEnabled(true);
         }
-        /*AsyncHttpClient InputReg = new AsyncHttpClient();
-        RequestParams param = new RequestParams();
-        param.put("eventos",ADevento);
-        param.put("usuarios",Dato);
-        InputReg.post(Host.Rest_Regitrar, param, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
-                    String msn = response.getString("msn");
-                    Toast.makeText(getApplicationContext(),msn,Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    String msn = errorResponse.getString("msn");
-                    Toast.makeText(getApplicationContext(),msn,Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });*/
     }
     public void createPDF(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
